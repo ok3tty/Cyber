@@ -20,6 +20,8 @@
 import argparse 
 import scapy.all as scapy 
 
+scapy.conf.iface = "wlan0"
+
 
 # Add command line arguemens function 
 
@@ -57,7 +59,7 @@ def scanner(IP):
     # First elemnt of the tuple holds the intended response and the rest are unanswered response
     # allow scapy a mininum of 1 sec of response wait time. If not responded then the it will move futher to send 
     # the packet to the next IP address
-    responses = scapy.srp(eth_arp_req, timeout = 1, verbose = False)[0]
+    responses = scapy.srp(eth_arp_req, timeout = 3, verbose = False)[0]
 
     # Create a list to store the results of the responses 
     # Ctreate a dictionary that holds the IP address and MAC address for the list of the response 
@@ -74,10 +76,10 @@ def show_result(result):
     for i in result:
         print("{}\t{}".format(i["IP"], i["MAC"]))
 
-
-args = cmd_arg()
-scanner_show = scanner(args.target)
-show_result(scanner_show)
+if __name__ == "__main___":
+    args = cmd_arg()
+    scanner_show = scanner(args.target)
+    show_result(scanner_show)
 
 
 
