@@ -20,7 +20,7 @@
 import argparse 
 import scapy.all as scapy 
 
-scapy.conf.iface = "wlan0"
+# scapy.conf.iface = "wlan0"
 
 
 # Add command line arguemens function 
@@ -76,10 +76,10 @@ def show_result(result):
     for i in result:
         print("{}\t{}".format(i["IP"], i["MAC"]))
 
-if __name__ == "__main___":
-    args = cmd_arg()
-    scanner_show = scanner(args.target)
-    show_result(scanner_show)
+
+args = cmd_arg()
+scanner_show = scanner(args.target)
+show_result(scanner_show)
 
 
 
