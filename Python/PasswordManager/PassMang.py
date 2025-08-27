@@ -190,7 +190,7 @@ def main():
                 choice = input("Choose option: ")
 
                 if choice == '1':
-                    web = input("\nProvide Website: ")
+                    web = input("\nProvide Website or App: ")
                     passwrd = getpass.getpass("Enter password: ")
 
                     passwrd_add(web, passwrd)
@@ -204,7 +204,7 @@ def main():
                         pyperclip.copy(decryp_pass)
                         print(f"\n[+] Password for {web}: {decryp_pass}\n[+] Password copied to clipboard.\n")
                     else:
-                        print("\n[-] Password not found or doesnt exists?")
+                        print("\n[-] Password not found or doesn't exists.")
                         print("\n[-] Check saved websites with option 3.\n")
                 
                 elif choice == '3':
