@@ -130,8 +130,8 @@ def passwrd_add(website, passwrd):
         except json.JSONDecodeError:
             pass_list = []
 
-    encrypt_passwrd = encrypt_passwrd(cipher, passwrd)
-    passwrd_entry = {'website': website, 'passworod': encrypt_passwrd}
+    encrypt_passwrd = encrypt(cipher, passwrd)
+    passwrd_entry = {'website': website, 'password': encrypt_passwrd}
     pass_list.append(passwrd_entry)
 
     with open('passwords.json' ,'w') as file:
@@ -151,7 +151,7 @@ def retrieve_pass(website):
 
     for data in info:
         if data['website'] == website:
-            decrypt_pass = decrypt((cipher, data['password']))
+            decrypt_pass = decrypt(cipher, encrypt=data['password'])
             return decrypt_pass
         
     return None
