@@ -118,6 +118,39 @@ else:
 
 cipher = initialize_cipher(key)
 
+
+def update_Passwrd(web, old_passwrd, new_passwrd):
+    if not os.path.exists('passwords.json'):
+        print("[-] No saved passwords")
+        return
+    
+    try:
+        with open('passwords.json') as file:
+            passwrds = json.load(file)
+    except json.JSONDecodeError:
+        passwrds = []
+
+    
+    found = False 
+    for data in passwrds:
+        if data['website'] == web:
+            
+            current_pass = decrypt(cipher, encrypt=data['password'])
+            if current_pass == old_passwrd:
+                data['passwords'] = encrypt(cipher, new_passwrd)
+                found = True
+            else:
+                print("[-] Provious password must match")
+                return
+
+    if found:
+        with open('passwords.json', 'w') as file:
+            json.dump(passwrds, file, indent=4)
+        print(f"[+] {web} password successfully added.")
+    else:
+        print("[-] Website not fonud or does not exist")            
+
+
 # Add function to add passwords 
 def passwrd_add(website, passwrd):
 
@@ -184,7 +217,8 @@ def main():
                 print("1. Add Password")
                 print("2. Retrieve Password")
                 print("3. Saved Websites")
-                print("4. Exit")
+                print("4. Change Password")
+                print("5. Exit")
                 print("\n\n")
 
                 choice = input("Choose option: ")
@@ -209,8 +243,14 @@ def main():
                 
                 elif choice == '3':
                     website_cred()
-                
+
                 elif choice == '4':
+                    web = input("Provide website or App: ")
+                    old_passwrd = getpass.getpass("Provide old password: ")
+                    nnew_passwrd = getpass.getpass("Provide new password: ")
+                    update_Passwrd(web, old_passwrd, nnew_passwrd)
+
+                elif choice == '5':
                     break;
 
         # Handle user registration
