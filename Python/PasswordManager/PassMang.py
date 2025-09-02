@@ -32,6 +32,9 @@ from cryptography.fernet import Fernet
 # Add hash function 
 
 def pwd_hash(passowrd):
+
+    # Use sha256 hasing algorithm for password hasshing 
+
     hash_sha256 = hashlib.sha256()
     hash_sha256.update(passowrd.encode())
     
@@ -56,6 +59,9 @@ def decrypt(cipher, encrypt):
 
 def registration(username, admin_pass):
 
+    # take in the user input for admin password and hash it
+    # Apply a font for username and admin pass within 'user_data.json' file 
+    # add user data into user data file if file exists, and handle if user file doesnt exist
     Hashed_MP = pwd_hash(admin_pass)
     user_data = {'username': username, 'admin_pass': Hashed_MP}
 
@@ -69,10 +75,21 @@ def registration(username, admin_pass):
             json.dump(user_data, file)
             print("\n[+] Registration complete!\n")
 
+        
+
 
 # Add logging in fnction 
 def login(username, input_pass):
     
+    # Handle user login with credentials 
+    # open user_data file to load user login 
+        # retrieve the stored hashed admin pass 
+        # hash thecurrent inptted pass 
+        # compare hash values of the input admin_pass 
+            # if input user login credentials matches then print login successful 
+
+    # If credentials are inccorrect then print appropriate message
+    # hasndle exceptons for any other inputs
     try:
         with open('user_data.json', 'r') as file:
             user_data = json.load(file)
@@ -92,6 +109,10 @@ def login(username, input_pass):
 
 # View website saved credentials 
 def website_cred():
+
+    # Check saved website that have been stored 
+    # saved websites names are stored in "passwords" json file 
+    # retrieve webstie naame from file and print all saved websties from a initialized list
     try:
         with open('passwords.json', 'r') as data:
             view = json.load(data)
