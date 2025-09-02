@@ -191,8 +191,19 @@ def retrieve_pass(website):
 
 def main():
 
+    # Apply Menu option for first page user interface 
+    # This menu includes:
+    """
+        - User login -- requires username and admin password 
+        - Register   -- user registers admin username and password 
+        - Exit       -- user option to exit password manager/program
+
+    """
+
+
     while True:
         print("\n\n")
+        print("-------Welcome to P-MANAGER--------\n\n")
         print("1. Login")
         print("2. Register")
         print("3. Exit")
@@ -200,6 +211,10 @@ def main():
 
         option = input("Choose an option: ")
         # Handle user log in
+        # handle file system existence 
+            # if file exists then allow user to enter log in credentials 
+            # else notifiy user to register an account and exit program
+
         if option == '1':
             file = 'user_data.json'
 
@@ -211,6 +226,16 @@ def main():
             else:
                 print("\n[-] Please register an account.\n")
                 sys.exit()
+
+
+            # Once user credentials are verified, prop up submenu for password manager 
+            # Menu should include:                
+                """
+                    -- Password Addition - user adds password with associated website or app
+                    -- Retrieve password - user retrieves stored password by inputting stored website or app information
+                    -- Password Change   - user changes password credentials for a stored password with associated website or app
+                    -- Exit              - user exits submenu and returns to main main 
+                """
 
             while True:
                 print("\n\n")
