@@ -146,7 +146,7 @@ def update_Passwrd(web, old_passwrd, new_passwrd):
         return
     
     try:
-        with open('passwords.json') as file:
+        with open('passwords.json', 'r') as file:
             passwrds = json.load(file)
     except json.JSONDecodeError:
         passwrds = []
