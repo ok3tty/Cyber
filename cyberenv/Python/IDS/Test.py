@@ -1,7 +1,27 @@
 from scapy.all import IP, TCP 
 from SigAnomIDS import IDS
 
+
+def train_model(ids):
+    
+    samples = []
+
+    for i in range(70):
+        samples.append([
+            60 + (i % 20),
+            10 + (i % 30),
+            800 + (i %200)
+        ])
+
+    ids.detect_sys.train_AnomDet(samples)
+    print("IDS model trained")
+
+
 def Test():
+
+    ids = IDS()
+
+    train_model(ids)
 
     # Create test packets to simulate various scenarios 
 
@@ -24,8 +44,6 @@ def Test():
         IP(src="192.168.1.100", dst="192.168.1.2") / TCP(sport=4321, dport=25, flags="S"),
     ]
 
-
-    ids = IDS()
 
     # Create simulation processing for packet sniffing and threat detection 
 

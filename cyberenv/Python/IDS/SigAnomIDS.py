@@ -11,7 +11,7 @@ import json
 from datetime import datetime
 
 class packetCapt:
-    def _init_(self):
+    def __init__(self):
         # Initialize a lass to start the packet capture and set an event stop for threading
         self.packet_queue = queue.Queue()
         self.stop_queue = threading.Event()
@@ -25,7 +25,7 @@ class packetCapt:
 
     def capt_thread(self, interface):
         try:
-            sniff(ifcae=interface, prn=self.pack_callB, store=0,
+            sniff(iface=interface, prn=self.pack_callB, store=0,
                   stop_filter=lambda x: self.stop_queue.is_set())
         except Exception as e:
             print(f"packet capture error: {e}")
@@ -47,7 +47,7 @@ class packetCapt:
             self.capt_thread.join(timeout=3)
 
 class traffic:
-    def _init_(self):
+    def __init__(self):
         self.connect = defaultdict(list) # organize connections and flow statistics with deafultdict
         self.statistical_flow = defaultdict(lambda: {
             'packet_count': 0,
@@ -67,7 +67,7 @@ class traffic:
 
             key_flow = (ip_src, ip_dst, port_src, port_dst)
 
-            stats = self.statistical_flow(key_flow)
+            stats = self.statistical_flow[key_flow]
             stats['packet_count'] += 1
             stats['byte_count'] += len(packet)
             curr_time = packet.time
@@ -81,11 +81,17 @@ class traffic:
     def extract_feat(self, packet, stats):
         # Computer extra detailed characteristics of the flow and current packet to help 
         # identify potential threats, anamolies, and patterns
+
+        duration = stats['last_time'] - stats['start_time']
+        if duration <= 0:
+            duration = 0.00001
+
+
         return {
             'packet_size': len(packet),
-            'flow_duration':stats['last_time'] - stats['start_time'],
-            'packet_rate': stats['packet_count'] / (stats['last_time'] - stats['start_time']),
-            'byte_rate': stats['byte_count'] / (stats['last_time'] - stats['start_time']),
+            'flow_duration':duration,
+            'packet_rate': stats['packet_count'] / duration,
+            'byte_rate': stats['byte_count'] / duration,
             'tcp_flags': packet[TCP].flags,
             'window_size': packet[TCP].window 
         
@@ -106,7 +112,7 @@ class EngineDetect:
         return {
             'syn_flood': {
                 'condition': lambda features: {
-                    features['tcp_falgs'] == 2 and 
+                    features['tcp_flags'] == 2 and 
                     features['packet_rate'] > 100
                 }
             },
@@ -142,7 +148,7 @@ class EngineDetect:
         ]])
 
         anomaly_score = self.anomaly_detect.score_samples(vectFeature)[0]
-        if anomaly_score  == 0.5: # Provide an anomaly threshold for detections
+        if anomaly_score  < -0.5: # Provide an anomaly threshold for detections
             threats.append({
                 'type': 'anomaly',
                 'score': anomaly_score, 
