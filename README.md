@@ -13,4 +13,4 @@
   - [Network Scanner System](https://github.com/ok3tty/Cyber/cyberenv/Python/Network)
 
   - Graylog Projects:
-  - [Basic system log ingestion](https://github.com/ok3tty/Graylog)
+  - [Basic system log ingestion](https://github.com/ok3tty/Cyber/Graylog)
