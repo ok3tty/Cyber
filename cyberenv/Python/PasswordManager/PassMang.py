@@ -5,6 +5,9 @@
     - adding and retrieving passwords 
     - display saved websites credentials 
 
+-- When comppiled:
+  -- json files will be created and stored in the same folder. 
+  -- Encryption key will be generated and saved in a key file, stored in the same folder.
 -- Passwords will be stored in a JSON File - encrypted 
 -- login credentials will be stored in a JSON File as well
 """
