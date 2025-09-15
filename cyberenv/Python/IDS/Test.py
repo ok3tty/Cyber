@@ -23,7 +23,8 @@ def Test():
 
     train_model(ids)
 
-    # Create test packets to simulate various scenarios 
+    
+    # Generate fake test packets for even scenario-simulation
 
     packets = [
 
