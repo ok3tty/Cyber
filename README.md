@@ -5,7 +5,7 @@
 - **Alert: All these projects are for self-education and learning**
 
 ## Repo Breakdown 
-  ** All projects are within the cybernv/Python Folder
+**List of Projects:**
 
   Python Projects:
   - [Password Manager System](https://github.com/ok3tty/Cyber/cyberenv/Python/PasswordManager)
