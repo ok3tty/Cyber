@@ -21,6 +21,7 @@
 
 ## Projects:
 **Project 1: Basic Graylog configuration and creating input/indices**
+    -- Project Location: Basic-Proj1 Folder
     -- Goal of this project is to setup graylog and docker container and explore the SIEM dashboards and instances
         -- Familiarized myself with log ingestions.
         -- Created inputs with rule indices for receiving log messages from my Ubuntu Server via ssh connection.
