@@ -7,10 +7,10 @@
 ## Repo Breakdown 
 **List of Projects:**
 
-  Python Projects:
-  - [Password Manager System](https://github.com/ok3tty/Cyber/cyberenv/Python/PasswordManager)
-  - [Intrustion Detection System](https://github.com/ok3tty/Cyber/cyberenv/Python/IDS)
-  - [Network Scanner System](https://github.com/ok3tty/Cyber/cyberenv/Python/Network)
+Python Projects:
+  - [Password Manager System](https://github.com/ok3tty/Cyber/tree/main/cyberenv/Python/PasswordManager)
+  - [Intrustion Detection System](https://github.com/ok3tty/Cyber/tree/main/cyberenv/Python/IDS)
+  - [Network Scanner System](https://github.com/ok3tty/Cyber/tree/main/cyberenv/Python/Network)
 
-  - Graylog Projects:
+Graylog Projects:
   - [Basic system log ingestion](https://github.com/ok3tty/Cyber/Graylog)
