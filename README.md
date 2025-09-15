@@ -2,7 +2,7 @@
 
 ## Repo-Descrption
 - This is a repository for all my cybersecurity projects and labs 
-- **Aler** All these projects are for self-education and learning
+- **Alert: All these projects are for self-education and learning**
 
 ## Repo Breakdown 
   ** All projects are within the cybernv/Python Folder
