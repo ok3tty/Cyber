@@ -12,4 +12,5 @@
   - [Intrustion Detection System](https://github.com/ok3tty/Cyber/cyberenv/Python/IDS)
   - [Network Scanner System](https://github.com/ok3tty/Cyber/cyberenv/Python/Network)
 
-  - Graylog Project
+  - Graylog Projects:
+  - [Basic system log ingestion](https://github.com/ok3tty/Cyber/cyberenv/Graylog)
