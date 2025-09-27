@@ -6,6 +6,9 @@ from tkinter import messagebox, simpledialog, ttk
 import pyperclip
 from cryptography.fernet import Fernet
 
+
+# This is the same system but with GUI implmentation using tkinter for better visual display and readability
+
 class PasswordManagerGUI:
     def __init__(self, root):
         self.root = root
